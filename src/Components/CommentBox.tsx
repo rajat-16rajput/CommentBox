@@ -14,6 +14,8 @@ const CommentBox: React.FC<CommentBoxProps> = ({ show, onClose }) => {
   const [comment, setComment] = useState<string>("");
   const [comments, setComments] = useState<Comment[]>([]);
 
+  if (!show) return null;
+
   const handleCommentChange = (
     event: React.ChangeEvent<HTMLTextAreaElement>
   ) => {
