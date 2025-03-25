@@ -7,9 +7,10 @@ interface Comment {
 
 interface CommentBoxProps {
   show: boolean;
+  onClose: () => void;
 }
 
-const CommentBox: React.FC<CommentBoxProps> = ({ show }) => {
+const CommentBox: React.FC<CommentBoxProps> = ({ show, onClose }) => {
   const [comment, setComment] = useState<string>("");
   const [comments, setComments] = useState<Comment[]>([]);
 
@@ -28,6 +29,10 @@ const CommentBox: React.FC<CommentBoxProps> = ({ show }) => {
 
   return (
     <div className={`comment-box ${show ? "show" : ""}`}>
+      <button className="close-btn" onClick={onClose}>
+        &times;
+      </button>
+
       <h3>Comments</h3>
 
       <textarea
@@ -38,15 +43,15 @@ const CommentBox: React.FC<CommentBoxProps> = ({ show }) => {
       />
 
       <button className="submit-btn" onClick={handleSubmit}>
-        Submit
+        Post
       </button>
 
       <div className="comment-list">
         {comments.length > 0 ? (
           comments.map((cmt, index) => (
             <div key={index} className="comment-item">
-              <strong className="comment-name">{cmt.name}</strong>{" "}
-              <p className="comment-text">{cmt.text}</p>{" "}
+              <strong className="comment-name">{cmt.name}</strong>
+              <p className="comment-text">{cmt.text}</p>
             </div>
           ))
         ) : (

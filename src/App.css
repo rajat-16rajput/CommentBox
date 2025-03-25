@@ -50,22 +50,32 @@
 }
 
 .comment-box {
-  height: 100vh;
-  width: 30vw; /* Increased width */
+  width: 30vw; /* Keep the increased width */
+  height: 80vh; /* Match the height of .Main */
   background-color: white;
-  position: fixed;
+  position: absolute; /* Position relative to .Main */
   top: 0;
-  right: -30vw; /* Initially hidden */
+  right: -30vw; /* Completely hidden initially */
   transition: right 0.3s ease-in-out;
   box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
   padding: 20px;
-  z-index: 1000; /* Ensure it's above other elements */
-  display: flex;
+  z-index: 1000;
+  display: none; /* Hide it completely */
   flex-direction: column;
+  overflow: hidden; /* Prevent initial scrollbars */
+  visibility: hidden; /* Prevents taking up space */
 }
 
 .comment-box.show {
   right: 0; /* Slide in */
+  display: flex; /* Make it visible when active */
+  visibility: visible;
+}
+
+.comment-list {
+  margin-top: 20px;
+  max-height: calc(80vh - 150px); /* Adjust dynamically */
+  overflow-y: auto; /* Show scrollbar only when needed */
 }
 
 /* Style for the textarea input */
@@ -90,18 +100,11 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  width: 100%;
+  /* width: 100%; */
 }
 
 .submit-btn:hover {
   background-color: #0056b3;
-}
-
-/* Comments list */
-.comment-list {
-  margin-top: 20px;
-  max-height: 60vh;
-  overflow-y: auto;
 }
 
 .comment-item {
@@ -129,4 +132,25 @@
 
 .button.move-left {
   transform: translateX(-30vw); /* Moves button to the left by 30vw */
+}
+
+/* Close button */
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: black;
+  transition: ease-out;
+}
+
+.close-btn:focus {
+  outline: none; /* Removes the focus outline */
+}
+
+.close-btn:hover {
+  color: red;
 }
