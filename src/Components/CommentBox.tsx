@@ -1,0 +1,60 @@
+import React, { useState } from "react";
+
+interface Comment {
+  name: string;
+  text: string;
+}
+
+interface CommentBoxProps {
+  show: boolean;
+}
+
+const CommentBox: React.FC<CommentBoxProps> = ({ show }) => {
+  const [comment, setComment] = useState<string>("");
+  const [comments, setComments] = useState<Comment[]>([]);
+
+  const handleCommentChange = (
+    event: React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
+    setComment(event.target.value);
+  };
+
+  const handleSubmit = () => {
+    if (comment.trim()) {
+      setComments([{ name: "Rajat", text: comment }, ...comments]);
+      setComment("");
+    }
+  };
+
+  return (
+    <div className={`comment-box ${show ? "show" : ""}`}>
+      <h3>Comments</h3>
+
+      <textarea
+        className="comment-input"
+        placeholder="Enter your comments here"
+        value={comment}
+        onChange={handleCommentChange}
+      />
+
+      <button className="submit-btn" onClick={handleSubmit}>
+        Submit
+      </button>
+
+      <div className="comment-list">
+        {comments.length > 0 ? (
+          comments.map((cmt, index) => (
+            <div key={index} className="comment-item">
+              <strong className="comment-name">{cmt.name}</strong>{" "}
+              <p className="comment-text">{cmt.text}</p>{" "}
+            </div>
+          ))
+        ) : (
+          <p className="no-comments">No comments yet.</p>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default CommentBox;

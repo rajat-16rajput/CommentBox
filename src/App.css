@@ -1,0 +1,132 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.Header {
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  width: 100vw;
+  height: 20vh;
+}
+
+.Main {
+  background: gray;
+  width: 100vw;
+  height: 80vh;
+  position: relative; /* Allows absolute positioning inside */
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.button {
+  width: 60px;
+  height: 40px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  transition: transform 0.3s ease-in-out; /* Smooth movement */
+}
+
+.button:hover {
+  background-color: #0056b3;
+}
+
+/* Move button left when comment box appears */
+.move-left {
+  transform: translateX(-22vw); /* Moves button left */
+}
+
+.comment-box {
+  height: 100vh;
+  width: 30vw; /* Increased width */
+  background-color: white;
+  position: fixed;
+  top: 0;
+  right: -30vw; /* Initially hidden */
+  transition: right 0.3s ease-in-out;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  z-index: 1000; /* Ensure it's above other elements */
+  display: flex;
+  flex-direction: column;
+}
+
+.comment-box.show {
+  right: 0; /* Slide in */
+}
+
+/* Style for the textarea input */
+.comment-input {
+  width: 100%;
+  height: 120px; /* Slightly bigger */
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  resize: none;
+  margin-top: 10px;
+}
+
+/* Submit button */
+.submit-btn {
+  margin-top: 12px;
+  padding: 12px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.submit-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Comments list */
+.comment-list {
+  margin-top: 20px;
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.comment-item {
+  background: #f0f0f0;
+  padding: 10px;
+  margin-bottom: 8px;
+  border-radius: 5px;
+  font-size: 14px;
+  word-wrap: break-word;
+}
+
+/* Message when no comments */
+.no-comments {
+  font-style: italic;
+  color: gray;
+}
+
+/* Adjust button positioning when comment box is open */
+.button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.button.move-left {
+  transform: translateX(-30vw); /* Moves button to the left by 30vw */
+}
